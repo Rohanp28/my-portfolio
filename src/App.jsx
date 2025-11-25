@@ -76,6 +76,7 @@ const experiences = [
 
 function App() {
   const [theme, setTheme] = useState("dark");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -85,6 +86,25 @@ function App() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleNavClick = (section) => {
+    const element = document.getElementById(section);
+    if (element) {
+      const headerOffset = 85; // Height of sticky header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
     <>
       <div className="noise-overlay" aria-hidden="true" />
@@ -92,24 +112,24 @@ function App() {
         <a className="logo" href="#hero">
           RP
         </a>
-        <nav className="site-nav" aria-label="Primary">
+
+        {/* Desktop Navigation */}
+        <nav className="site-nav desktop-nav" aria-label="Primary">
           {["about", "skills", "experience", "education", "contact"].map(
             (section) => (
               <button
                 key={section}
                 className="nav-link"
-                onClick={() =>
-                  document
-                    .getElementById(section)
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={() => handleNavClick(section)}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </button>
             )
           )}
         </nav>
-        <div className="header-actions">
+
+        {/* Desktop Actions */}
+        <div className="header-actions desktop-actions">
           <button className="theme-toggle" onClick={toggleTheme}>
             {theme === "dark" ? "Light" : "Dark"} theme
           </button>
@@ -126,6 +146,56 @@ function App() {
               GitHub
             </a>
           </div>
+        </div>
+
+        {/* Mobile Actions (Theme + Hamburger) */}
+        <div className="mobile-actions">
+          <button
+            className="theme-toggle-mobile"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+          <button
+            className={`hamburger ${mobileMenuOpen ? "active" : ""}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}>
+          <nav className="mobile-nav">
+            {["about", "skills", "experience", "education", "contact"].map(
+              (section) => (
+                <button
+                  key={section}
+                  className="mobile-nav-link"
+                  onClick={() => handleNavClick(section)}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </button>
+              )
+            )}
+            <div className="mobile-cta-group">
+              <a className="ghost-btn" href="mailto:rohanpatare98@gmail.com">
+                Email
+              </a>
+              <a
+                className="solid-btn"
+                href="https://github.com/RohanPatare"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+          </nav>
         </div>
       </header>
 
