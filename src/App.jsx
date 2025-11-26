@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 const highlights = [
-  "Led flight seatmap integration that boosted conversion by 30%",
-  "Reduced build issues by 25% after dependency modernization",
-  "Championed component library that accelerated feature delivery",
-  "Mentored interns via pair programming and code reviews",
+  "Built a seamless seat selection experience that improved user flow and boosted conversions",
+  "Modernized large parts of the frontend, cutting build issues and improving stability",
+  "Introduced a reusable component setup that helped the team ship UI faster",
+  "Mentored junior devs and helped onboard new engineers smoothly",
 ];
 
 const skills = [
@@ -95,11 +95,12 @@ function App() {
     if (element) {
       const headerOffset = 85; // Height of sticky header
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
     setMobileMenuOpen(false);
@@ -205,9 +206,12 @@ function App() {
             <p className="eyebrow">Results-driven Frontend Specialist</p>
             <h1>Rohan Patare</h1>
             <p className="lede">
-              Senior Software Engineer crafting high-performance, accessible web
-              applications with React, TypeScript, and GraphQL. 4.5+ years
-              enabling teams to ship faster while elevating UX.
+              I’m a frontend engineer who loves turning ideas into smooth,
+              thoughtful web experiences. Most of what I’ve learned comes from
+              building things — experimenting, breaking stuff, fixing it, and
+              slowly discovering how great products are made. I care about clean
+              UI, fast performance, and writing code that makes sense even
+              months later.
             </p>
             <div className="hero-meta">
               <span>Pune · Remote friendly</span>
@@ -233,16 +237,23 @@ function App() {
           </div>
           <div className="hero-stats glass-card">
             <div>
-              <p className="stat-value">4.5+</p>
-              <p className="stat-label">Years building enterprise UX</p>
+              <p className="stat-value">5+ Years</p>
+              <p className="stat-label">
+                Building thoughtful, user-first web experiences
+              </p>
             </div>
             <div>
-              <p className="stat-value">30%</p>
-              <p className="stat-label">Avg uplift in booking efficiency</p>
+              <p className="stat-value">Self-Taught Path</p>
+              <p className="stat-label">
+                Most of my skills come from building, breaking, and learning by
+                doing
+              </p>
             </div>
             <div>
-              <p className="stat-value">40%</p>
-              <p className="stat-label">Faster onboarding via mentorship</p>
+              <p className="stat-value">Craft-Focused</p>
+              <p className="stat-label">
+                I care about clarity, performance & clean code
+              </p>
             </div>
           </div>
         </section>
@@ -251,16 +262,13 @@ function App() {
           <article className="glass-card intro">
             <h2>Summary</h2>
             <p>
-              I translate complex business requirements into resilient digital
-              experiences. My recent work at Musafir.com spans delivery
-              leadership, reusable component systems, and high-traffic issue
-              resolution—always balancing performance, maintainability, and
-              brand storytelling.
-            </p>
-            <p>
-              I thrive in cross-functional squads, partnering with Product, UX,
-              and Backend teams to deliver measurable impact while coaching
-              engineers on clean, scalable patterns.
+              I enjoy simplifying complex flows and turning messy problems into
+              clean, intuitive interfaces. Whether I'm working on a booking
+              engine, internal tools, or experimental side projects, I focus on
+              clarity, performance, and the small details that make an
+              experience feel effortless. I’ve worked with teams across design,
+              backend, and product, and I love the overlap—where user
+              experience, engineering, and problem-solving meet.
             </p>
           </article>
           <article className="glass-card badges">
@@ -344,9 +352,8 @@ function App() {
             <h2>Let's build something bold</h2>
           </div>
           <p>
-            Whether you're scaling an e-commerce platform or polishing a
-            mission-critical travel experience, I can help ship accessible,
-            resilient interfaces quickly.
+            Have a project in mind? Feel free to reach out and let's create
+            something amazing together.
           </p>
           <div className="contact-actions">
             <a className="solid-btn" href="mailto:rohanpatare98@gmail.com">

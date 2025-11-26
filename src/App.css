@@ -262,18 +262,24 @@ main {
 
 .hero-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
-  text-align: center;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
 }
 
 .stat-value {
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .stat-label {
   color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .grid-section {
@@ -563,7 +569,8 @@ section {
   }
 
   .hero-stats {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
@@ -583,8 +590,8 @@ section {
   }
 
   .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    padding: 1.5rem;
+    gap: 1.25rem;
   }
 
   .grid-section {
