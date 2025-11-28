@@ -1118,6 +1118,50 @@ main {
   letter-spacing: 0.02em;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 300ms ease;
+  box-shadow: var(--shadow);
+  animation: fadeInUp 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  background: var(--btn-hover-bg);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top svg {
+  flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Scroll offset for sticky header */
 section {
   scroll-margin-top: 90px;
@@ -1402,5 +1446,12 @@ section {
 
   .footer-copyright {
     font-size: 0.85rem;
+  }
+
+  .scroll-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
   }
 }

@@ -363,10 +363,20 @@ const services = [
 function App() {
   const [theme, setTheme] = useState("dark");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
@@ -391,6 +401,13 @@ function App() {
       });
     }
     setMobileMenuOpen(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -513,7 +530,7 @@ function App() {
               <a
                 className="ghost-btn"
                 href="/resume.pdf"
-                download="Rohan_Patare_Latest_Detailed_Resume.pdf"
+                download="Rohan_Patare_Latest_Resume.pdf"
               >
                 <svg
                   width="18"
@@ -856,6 +873,27 @@ function App() {
           © 2025 Rohan Patare • All Rights Reserved
         </p>
       </footer>
+
+      {showScrollTop && (
+        <button
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M18 15l-6-6-6 6" />
+          </svg>
+        </button>
+      )}
     </>
   );
 }
