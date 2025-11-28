@@ -530,7 +530,7 @@ function App() {
               <a
                 className="ghost-btn"
                 href="/resume.pdf"
-                download="Rohan_Patare_Latest_Resume.pdf"
+                download="Rohan_Patare_Latest_DetailedResume.pdf"
               >
                 <svg
                   width="18"
