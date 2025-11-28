@@ -27,17 +27,20 @@ A modern, responsive portfolio website showcasing my work as a Senior Software E
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/Rohanp28/my-portfolio.git
 cd my-portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -77,6 +80,7 @@ Theme colors can be customized in `src/App.css` by modifying the CSS variables:
 ### Content
 
 Update your personal information in `src/App.jsx`:
+
 - Professional highlights
 - Skills and technologies
 - Work experience
