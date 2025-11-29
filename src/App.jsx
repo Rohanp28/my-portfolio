@@ -309,7 +309,7 @@ const projects = [
       "A modern, responsive portfolio website showcasing my skills and experience with glassmorphic design.",
     techStack: ["React", "CSS", "JavaScript"],
     github: "https://github.com/Rohanp28/my-portfolio",
-    live: "#",
+    live: "https://rohanpatare-portfolio.vercel.app/",
   },
   {
     title: "Todo App",
