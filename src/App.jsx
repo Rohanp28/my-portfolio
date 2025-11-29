@@ -527,10 +527,11 @@ function App() {
               >
                 Let's Collaborate
               </button>
+
               <a
+                href="/Rohan_Patare_Latest_Detailed_Resume.pdf"
                 className="ghost-btn"
-                href="/resume.pdf"
-                download="Rohan_Patare_Latest_DetailedResume.pdf"
+                download="Rohan_Patare_Resume.pdf"
               >
                 <svg
                   width="18"
