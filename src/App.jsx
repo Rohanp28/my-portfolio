@@ -529,7 +529,7 @@ function App() {
               </button>
 
               <a
-                href="/Rohan_Patare_Latest_Detailed_Resume.pdf"
+                href="/Rohan_Patare_Resume.pdf"
                 className="ghost-btn"
                 download="Rohan_Patare_Resume.pdf"
               >
