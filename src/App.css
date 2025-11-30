@@ -110,46 +110,70 @@ main {
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: 0.12em;
-  color: var(--white);
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
   text-decoration: none;
-  background: linear-gradient(135deg, var(--white) 0%, var(--gray) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   border: none;
   cursor: pointer;
   font: inherit;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
+  padding: 0;
+  border-radius: 50%;
   transition: all 300ms ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  line-height: 1;
 }
 
-.logo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--card-inner-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 300ms ease;
-  z-index: -1;
+/* Dark theme - Silver/Metallic gradient suitable for black theme */
+[data-theme="dark"] .logo {
+  background: linear-gradient(135deg, #52525b 0%, #71717a 25%, #a1a1aa 50%, #d4d4d8 75%, #52525b 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(161, 161, 170, 0.4),
+              0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: gradientShift 3s ease infinite;
 }
 
-.logo:hover::before {
-  opacity: 1;
+[data-theme="dark"] .logo:hover {
+  background: linear-gradient(135deg, #71717a 0%, #a1a1aa 25%, #d4d4d8 50%, #e4e4e7 75%, #71717a 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 6px 20px rgba(161, 161, 170, 0.5),
+              0 3px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
-.logo:hover {
-  background: var(--white);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Light theme - Rich dark gradient with vibrant accents */
+[data-theme="light"] .logo {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2d2d2d 50%, #3d3d3d 75%, #1a1a1a 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+              0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: gradientShift 3s ease infinite;
+}
+
+[data-theme="light"] .logo:hover {
+  background: linear-gradient(135deg, #2a2a2a 0%, #3d3d3d 25%, #4d4d4d 50%, #3d3d3d 75%, #2a2a2a 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35),
+              0 3px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .site-nav {
@@ -1194,29 +1218,61 @@ section {
 
   /* Theme Toggle Mobile */
   .theme-toggle-mobile {
-    padding: 0.5rem;
+    padding: 0;
     border-radius: 50%;
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--card-inner-bg);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background var(--transition), transform var(--transition);
+    transition: all var(--transition);
     cursor: pointer;
     color: var(--white);
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+  }
+
+  .theme-toggle-mobile:hover {
+    background: var(--btn-hover-bg);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  [data-theme="light"] .theme-toggle-mobile:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   /* Hamburger Menu */
   .hamburger {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
-    padding: 0.5rem;
-    background: transparent;
-    border: none;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-inner-bg);
     cursor: pointer;
     z-index: 101;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    transition: all var(--transition);
+  }
+
+  .hamburger:hover {
+    background: var(--btn-hover-bg);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  [data-theme="light"] .hamburger:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .hamburger span {
