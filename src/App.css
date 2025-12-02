@@ -13,7 +13,6 @@
 
   /* New semantic variables */
   --header-bg: rgba(5, 5, 5, 0.9);
-  --text-secondary: rgba(255, 255, 255, 0.75);
   --timeline-line: rgba(255, 255, 255, 0.2);
   --timeline-dot: #fff;
   --card-inner-bg: rgba(255, 255, 255, 0.03);
@@ -41,7 +40,6 @@
 
   /* New semantic variables */
   --header-bg: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(0, 0, 0, 0.65);
   --timeline-line: rgba(0, 0, 0, 0.12);
   --timeline-dot: #1a1a1a;
   --card-inner-bg: rgba(0, 0, 0, 0.03);
@@ -372,8 +370,8 @@ main {
 }
 
 .lede {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: var(--gray);
   margin-bottom: 1.5rem;
 }
 
@@ -421,7 +419,8 @@ main {
 }
 
 .intro p {
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: var(--gray);
   line-height: 1.7;
 }
 
@@ -811,7 +810,8 @@ main {
 }
 
 .project-description {
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: var(--gray);
   line-height: 1.7;
   margin-bottom: 1.25rem;
 }
@@ -908,10 +908,10 @@ main {
 }
 
 .service-card p {
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: var(--gray);
   line-height: 1.6;
   margin-bottom: 0.75rem;
-  font-size: 0.95rem;
   flex: 1;
 }
 
@@ -983,7 +983,7 @@ main {
 
 .edu-institution {
   font-size: 1rem;
-  color: var(--text-secondary);
+  color: var(--gray);
   margin: 0;
   line-height: 1.6;
 }
@@ -1012,10 +1012,10 @@ main {
 }
 
 .certification-text {
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: var(--gray);
   line-height: 1.7;
   margin: 0;
-  font-size: 1rem;
 }
 
 .contact {
@@ -1023,9 +1023,9 @@ main {
 }
 
 .contact-intro {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: var(--gray);
   margin-bottom: 2rem;
 }
 
@@ -1492,7 +1492,7 @@ section {
   }
 
   .service-card p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .site-footer {
