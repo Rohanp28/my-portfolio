@@ -378,6 +378,38 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animatable elements (excluding hero section)
+    const animatableElements = document.querySelectorAll(
+      ".glass-card:not(#hero .glass-card), .tech-item, .project-card, .service-card, .timeline-list li, .grid-section > *, section:not(#hero)"
+    );
+
+    animatableElements.forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => {
+      animatableElements.forEach((el) => {
+        observer.unobserve(el);
+      });
+    };
+  }, []);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
@@ -413,6 +445,38 @@ function App() {
   return (
     <>
       <div className="noise-overlay" aria-hidden="true" />
+      <div className="stars-background" aria-hidden="true">
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+      </div>
       <header className="site-header">
         <button className="logo" onClick={() => handleNavClick("hero")}>
           RP
