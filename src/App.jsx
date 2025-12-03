@@ -360,6 +360,26 @@ const services = [
   },
 ];
 
+// Utility function to wrap words in spans for progressive reveal
+const wrapWords = (text) => {
+  let wordIndex = 0;
+  return text.split(/(\s+)/).map((word, index) => {
+    if (word.trim() === "") {
+      return <span key={index}>{word}</span>;
+    }
+    const currentIndex = wordIndex++;
+    return (
+      <span
+        key={index}
+        className="word"
+        style={{ "--word-index": currentIndex }}
+      >
+        {word}
+      </span>
+    );
+  });
+};
+
 function App() {
   const [theme, setTheme] = useState("dark");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -381,14 +401,19 @@ function App() {
   useEffect(() => {
     // Intersection Observer for scroll-triggered animations
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      threshold: 0.15,
+      rootMargin: "0px 0px -80px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("animate-in");
+          // Also animate section headings when section is visible
+          const sectionHeading = entry.target.querySelector(".section-heading");
+          if (sectionHeading && !sectionHeading.classList.contains("animate-in")) {
+            sectionHeading.classList.add("animate-in");
+          }
           observer.unobserve(entry.target);
         }
       });
@@ -403,10 +428,75 @@ function App() {
       observer.observe(el);
     });
 
+    // Also observe section headings directly
+    const sectionHeadings = document.querySelectorAll(".section-heading");
+    sectionHeadings.forEach((el) => {
+      observer.observe(el);
+    });
+
     return () => {
       animatableElements.forEach((el) => {
         observer.unobserve(el);
       });
+      sectionHeadings.forEach((el) => {
+        observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  useEffect(() => {
+    // Intersection Observer for scroll-based timeline highlighting
+    // Use a small delay to ensure DOM is ready
+    let highlightObserver = null;
+
+    const timeoutId = setTimeout(() => {
+      const timelineItems = document.querySelectorAll(".timeline-item");
+
+      if (timelineItems.length === 0) return;
+
+      highlightObserver = new IntersectionObserver(
+        (entries) => {
+          // Find the entry with the highest intersection ratio (most visible)
+          let maxRatio = 0;
+          let mostVisibleItem = null;
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+              maxRatio = entry.intersectionRatio;
+              mostVisibleItem = entry.target;
+            }
+          });
+
+          // Remove highlight from all items
+          timelineItems.forEach((item) => {
+            item.classList.remove("timeline-highlighted");
+          });
+
+          // Add highlight to the most visible item
+          if (mostVisibleItem && maxRatio > 0.3) {
+            mostVisibleItem.classList.add("timeline-highlighted");
+          }
+        },
+        {
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+          rootMargin: "-20% 0px -20% 0px", // Only highlight when item is in center 60% of viewport
+        }
+      );
+
+      // Observe all timeline items
+      timelineItems.forEach((item) => {
+        highlightObserver.observe(item);
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (highlightObserver) {
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        timelineItems.forEach((item) => {
+          highlightObserver.unobserve(item);
+        });
+      }
     };
   }, []);
 
@@ -564,12 +654,9 @@ function App() {
             <p className="eyebrow">Frontend-Focused Full-Stack MERN Engineer</p>
             <h1>Rohan Patare</h1>
             <p className="lede">
-              I’m a frontend-focused engineer with strong full-stack MERN
-              abilities. I build fast, smooth, and reliable web experiences end
-              to end — from clean, intuitive interfaces to solid backend APIs. I
-              learn by building, experimenting, and refining until things feel
-              right. I bring a product-first mindset, ensuring every feature
-              feels polished, performant, and dependable.
+              {wrapWords(
+                "I'm a frontend-focused engineer with strong full-stack MERN abilities. I build fast, smooth, and reliable web experiences end to end — from clean, intuitive interfaces to solid backend APIs. I learn by building, experimenting, and refining until things feel right. I bring a product-first mindset, ensuring every feature feels polished, performant, and dependable."
+              )}
             </p>
             <div className="hero-meta">
               <span>Pune · Remote friendly</span>
@@ -645,19 +732,15 @@ function App() {
           <article className="glass-card intro">
             <h2>Summary</h2>
             <p>
-              I’m a full-stack engineer with 5+ years of experience,
-              specializing in frontend development. I build fast, scalable, and
-              intuitive web applications using React and TypeScript, backed by
-              solid MERN full-stack abilities when end-to-end thinking is
-              required.
+              {wrapWords(
+                "I'm a full-stack engineer with 5+ years of experience, specializing in frontend development. I build fast, scalable, and intuitive web applications using React and TypeScript, backed by solid MERN full-stack abilities when end-to-end thinking is required."
+              )}
             </p>
             <br></br>
             <p>
-              I enjoy transforming complex requirements into clean,
-              user-friendly interfaces that feel smooth and perform well. I
-              thrive in collaborative teams and love working across design,
-              product, and engineering to ship features that genuinely improve
-              the user experience.
+              {wrapWords(
+                "I enjoy transforming complex requirements into clean, user-friendly interfaces that feel smooth and perform well. I thrive in collaborative teams and love working across design, product, and engineering to ship features that genuinely improve the user experience."
+              )}
             </p>
           </article>
           <article className="glass-card badges">
@@ -699,8 +782,12 @@ function App() {
             <h2>Recent Experience</h2>
           </div>
           <ol className="timeline-list">
-            {experiences.map((role) => (
-              <li className="glass-card" key={role.title + role.period}>
+            {experiences.map((role, index) => (
+              <li
+                className="glass-card timeline-item"
+                data-timeline-index={index}
+                key={role.title + role.period}
+              >
                 <div className="timeline-meta">
                   <span>
                     {role.period} · {role.location}
