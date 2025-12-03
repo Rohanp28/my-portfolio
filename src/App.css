@@ -505,8 +505,14 @@ main {
 
 .theme-toggle:hover {
   background: var(--btn-hover-bg);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2),
+    0 0 15px rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(1.05);
 }
 
 [data-theme="light"] .theme-toggle:hover {
@@ -520,12 +526,32 @@ main {
   font-weight: 500;
   font-size: 0.95rem;
   position: relative;
-  transition: all 300ms ease;
-  overflow: hidden;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
   cursor: pointer;
+  isolation: isolate;
+  z-index: 1;
 }
 
+/* Subtle glowing border for nav links */
 .nav-link::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.04)
+  );
+  opacity: 0;
+  transition: opacity 400ms ease, box-shadow 400ms ease;
+  z-index: -1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 6px rgba(255, 255, 255, 0.06), 0 0 12px rgba(255, 255, 255, 0.04);
+}
+
+.nav-link::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -533,16 +559,32 @@ main {
   border-radius: 999px;
   opacity: 0;
   transform: scale(0.8);
-  transition: all 300ms ease;
-  z-index: -1;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -2;
 }
 
 .nav-link:hover::before {
   opacity: 1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 8px rgba(255, 255, 255, 0.12), 0 0 14px rgba(255, 255, 255, 0.09),
+    0 0 20px rgba(255, 255, 255, 0.05);
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .nav-link:hover {
   color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12),
+    0 0 25px rgba(255, 255, 255, 0.09);
+}
+
+.nav-link:active {
+  transform: translateY(0);
 }
 
 .hero-cta {
@@ -564,31 +606,119 @@ main {
   text-decoration: none;
   font-weight: 500;
   border: 1px solid transparent;
-  transition: transform var(--transition), background var(--transition),
-    border var(--transition);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
 }
 
 .solid-btn {
   background: var(--solid-btn-bg);
   color: var(--solid-btn-text);
+  z-index: 1;
+}
+
+/* Subtle glowing border for solid button */
+.solid-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.06)
+  );
+  opacity: 0;
+  transition: opacity 400ms ease, box-shadow 400ms ease;
+  z-index: -1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 8px rgba(255, 255, 255, 0.1), 0 0 15px rgba(255, 255, 255, 0.06);
 }
 
 .solid-btn:hover {
-  opacity: 0.9;
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.25),
+    0 0 30px rgba(255, 255, 255, 0.18), 0 0 50px rgba(255, 255, 255, 0.12);
+  filter: brightness(1.15);
+}
+
+.solid-btn:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 10px rgba(255, 255, 255, 0.18), 0 0 18px rgba(255, 255, 255, 0.12),
+    0 0 25px rgba(255, 255, 255, 0.06);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.solid-btn:active {
+  transform: translateY(0);
 }
 
 .ghost-btn {
   border-color: var(--border);
   color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle glowing border for ghost button */
+.ghost-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.05)
+  );
+  opacity: 0;
+  transition: opacity 400ms ease, box-shadow 400ms ease;
+  z-index: -1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 6px rgba(255, 255, 255, 0.08), 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+.ghost-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--btn-hover-bg);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  z-index: -2;
+  border-radius: 999px;
 }
 
 .ghost-btn:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: transparent;
   background: var(--btn-hover-bg);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.18),
+    0 0 30px rgba(255, 255, 255, 0.15), 0 0 50px rgba(255, 255, 255, 0.09),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.ghost-btn:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 8px rgba(255, 255, 255, 0.15), 0 0 15px rgba(255, 255, 255, 0.11),
+    0 0 22px rgba(255, 255, 255, 0.06);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.ghost-btn:hover::after {
+  opacity: 1;
+}
+
+.ghost-btn:active {
+  transform: translateY(0);
 }
 
 .glass-card {
@@ -1441,19 +1571,6 @@ section.animate-in {
 }
 
 /* Left border highlight for timeline cards */
-/* Left border highlight for timeline cards */
-.timeline-highlighted {
-  border-left: 4px solid var(--accent) !important;
-  position: relative;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    -4px 0 12px -4px rgba(224, 224, 224, 0.5);
-}
-
-[data-theme="light"] .timeline-highlighted {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05),
-    -4px 0 12px -4px rgba(0, 0, 0, 0.25);
-}
 
 /* Ring positioned on the timeline line, around the dot */
 .timeline-highlighted::after {
@@ -1487,6 +1604,61 @@ section.animate-in {
   50% {
     transform: scale(1.2);
     opacity: 0.7;
+  }
+}
+
+@keyframes rotateBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glimmer {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18),
+      0 0 8px rgba(255, 255, 255, 0.15), 0 0 14px rgba(255, 255, 255, 0.11),
+      0 0 22px rgba(255, 255, 255, 0.06);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.24),
+      0 0 12px rgba(255, 255, 255, 0.21), 0 0 20px rgba(255, 255, 255, 0.15),
+      0 0 30px rgba(255, 255, 255, 0.09);
+  }
+}
+
+@keyframes glimmerShine {
+  0%,
+  100% {
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4),
+      0 0 30px rgba(255, 255, 255, 0.3), 0 0 50px rgba(255, 255, 255, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.15), 0 0 0 2px rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.5),
+      0 0 40px rgba(255, 255, 255, 0.4), 0 0 60px rgba(255, 255, 255, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.15),
+      0 0 0 3px rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -1723,13 +1895,66 @@ section.animate-in {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all 300ms ease;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+  z-index: 1;
+}
+
+/* Rotating border for project links */
+/* Subtle glowing border for project link */
+.project-link::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 8px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.03)
+  );
+  opacity: 0;
+  transition: opacity 400ms ease, box-shadow 400ms ease;
+  z-index: -1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 5px rgba(255, 255, 255, 0.05), 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.project-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--btn-hover-bg);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  z-index: -2;
+  border-radius: 8px;
 }
 
 .project-link:hover {
-  border-color: var(--border);
+  border-color: transparent;
   background: var(--btn-hover-bg);
   color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15),
+    0 0 25px rgba(255, 255, 255, 0.12), 0 0 40px rgba(255, 255, 255, 0.06);
+}
+
+.project-link:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 0 8px rgba(255, 255, 255, 0.11), 0 0 14px rgba(255, 255, 255, 0.08),
+    0 0 20px rgba(255, 255, 255, 0.04);
+  animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+.project-link:hover::after {
+  opacity: 1;
+}
+
+.project-link:active {
+  transform: translateY(0);
 }
 
 .project-link svg {
@@ -2253,8 +2478,14 @@ section {
 
   .theme-toggle-mobile:hover {
     background: var(--btn-hover-bg);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2),
+      0 0 15px rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+  }
+
+  .theme-toggle-mobile:active {
+    transform: scale(1.05);
   }
 
   [data-theme="light"] .theme-toggle-mobile:hover {
@@ -2283,8 +2514,14 @@ section {
 
   .hamburger:hover {
     background: var(--btn-hover-bg);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2),
+      0 0 15px rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+  }
+
+  .hamburger:active {
+    transform: scale(1.05);
   }
 
   [data-theme="light"] .hamburger:hover {
@@ -2351,14 +2588,37 @@ section {
     text-align: left;
     font-size: 1.1rem;
     border-radius: 12px;
-    transition: all 0.2s ease;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-nav-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--btn-hover-bg);
+    opacity: 0;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+    border-radius: 12px;
   }
 
   .mobile-nav-link:hover {
     background: var(--btn-hover-bg);
     color: var(--white);
     padding-left: 1.5rem;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  }
+
+  .mobile-nav-link:hover::before {
+    opacity: 1;
+  }
+
+  .mobile-nav-link:active {
+    transform: translateX(2px);
   }
 
   /* Content Spacing Adjustments */
