@@ -1063,6 +1063,8 @@ section.animate-in {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-stats > div:nth-child(1) {
@@ -1077,32 +1079,87 @@ section.animate-in {
   animation-delay: 0.9s;
 }
 
+.stat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+
 [data-theme="light"] .hero-stats {
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-radius: 12px;
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 0;
+}
+
+.stat-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hero-stats > div:nth-child(1) .stat-header {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.65s;
+}
+
+.hero-stats > div:nth-child(2) .stat-header {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.75s;
+}
+
+.hero-stats > div:nth-child(3) .stat-header {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.85s;
+}
+
+.hero-stats > div:nth-child(1) .stat-icon {
+  animation: none;
+}
+
+.hero-stats > div:nth-child(2) .stat-icon {
+  animation: none;
+}
+
+.hero-stats > div:nth-child(3) .stat-icon {
+  animation: none;
+}
+
+.hero-stats:hover .stat-icon {
+  transform: scale(1.05);
+  color: var(--accent-hover);
+}
+
 .stat-value {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.hero-stats > div:nth-child(1) .stat-value {
-  animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 0.7s;
-}
-
-.hero-stats > div:nth-child(2) .stat-value {
-  animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 0.8s;
-}
-
-.hero-stats > div:nth-child(3) .stat-value {
-  animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 0.9s;
+  margin: 0;
+  opacity: 1;
+  transform: none;
+  flex: 1;
 }
 
 .stat-label {
@@ -1111,22 +1168,24 @@ section.animate-in {
   line-height: 1.5;
   opacity: 0;
   transform: translateY(10px);
+  margin-top: 0;
+  padding-left: 0;
 }
 
 .hero-stats > div.animate-in .stat-label,
 .hero-stats > div:nth-child(1) .stat-label {
   animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 0.8s;
+  animation-delay: 0.85s;
 }
 
 .hero-stats > div:nth-child(2) .stat-label {
   animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 0.9s;
+  animation-delay: 0.95s;
 }
 
 .hero-stats > div:nth-child(3) .stat-label {
   animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: 1s;
+  animation-delay: 1.05s;
 }
 
 .grid-section {
@@ -2990,6 +3049,12 @@ html {
   .hero-stats {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    overflow: visible;
+  }
+
+  .stat-label {
+    opacity: 1;
+    transform: none;
   }
 
   .services-header {
@@ -3048,6 +3113,38 @@ html {
   .hero-stats {
     padding: 1.5rem;
     gap: 1.25rem;
+    overflow: visible;
+  }
+
+  .stat-header {
+    margin-bottom: 0.5rem;
+    margin-left: 0;
+    padding-left: 0;
+    gap: 0.75rem;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin-left: 0;
+  }
+
+  .stat-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 1;
+    transform: none;
+    margin-top: 0.5rem;
+    padding-left: 0;
   }
 
   .grid-section {
