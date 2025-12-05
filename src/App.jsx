@@ -216,7 +216,6 @@ const experiences = [
   {
     title: "Senior Software Engineer",
     company: "Musafir.com",
-    location: "UAE",
     period: "Mar 2025 — Present",
     technologies: [
       "React",
@@ -237,7 +236,6 @@ const experiences = [
   {
     title: "Software Engineer",
     company: "Musafir.com",
-    location: "UAE",
     period: "Jan 2022 — Feb 2025",
     technologies: [
       "React",
@@ -262,7 +260,6 @@ const experiences = [
   {
     title: "Member of Technical Staff",
     company: "Mindstix Software Labs",
-    location: "Pune",
     period: "Aug 2021 — Dec 2021",
     technologies: [
       "React",
@@ -283,7 +280,6 @@ const experiences = [
   {
     title: "Graduate Trainee Engineer",
     company: "Reliance Jio",
-    location: "Mumbai",
     period: "Sep 2020 — Jul 2021",
     technologies: [
       "React",
@@ -448,14 +444,86 @@ function App() {
     // Intersection Observer for scroll-based timeline highlighting
     // Use a small delay to ensure DOM is ready
     let highlightObserver = null;
+    const hoveredItems = new Set();
+    const eventHandlers = new Map();
 
     const timeoutId = setTimeout(() => {
       const timelineItems = document.querySelectorAll(".timeline-item");
 
       if (timelineItems.length === 0) return;
 
+      // Add hover event handlers
+      const handleMouseEnter = (item) => {
+        hoveredItems.add(item);
+        // Remove highlight from all items
+        timelineItems.forEach((timelineItem) => {
+          timelineItem.classList.remove("timeline-highlighted");
+        });
+        // Add highlight to hovered item
+        item.classList.add("timeline-highlighted");
+      };
+
+      const handleMouseLeave = (item) => {
+        hoveredItems.delete(item);
+        // Remove highlight from hovered item
+        item.classList.remove("timeline-highlighted");
+        // Restore scroll-based highlighting
+        updateScrollHighlight();
+      };
+
+      // Attach hover handlers to all timeline items
+      timelineItems.forEach((item) => {
+        const enterHandler = () => handleMouseEnter(item);
+        const leaveHandler = () => handleMouseLeave(item);
+        eventHandlers.set(item, { enterHandler, leaveHandler });
+        item.addEventListener("mouseenter", enterHandler);
+        item.addEventListener("mouseleave", leaveHandler);
+      });
+
+      // Function to update scroll-based highlighting
+      const updateScrollHighlight = () => {
+        // Only update if no items are being hovered
+        if (hoveredItems.size > 0) return;
+
+        // Find the most visible item
+        let maxRatio = 0;
+        let mostVisibleItem = null;
+
+        timelineItems.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const itemTop = rect.top;
+          const itemBottom = rect.bottom;
+          const itemHeight = rect.height;
+
+          // Calculate intersection ratio
+          const visibleTop = Math.max(0, -itemTop);
+          const visibleBottom = Math.min(itemHeight, viewportHeight - itemTop);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const ratio = visibleHeight / itemHeight;
+
+          if (ratio > maxRatio) {
+            maxRatio = ratio;
+            mostVisibleItem = item;
+          }
+        });
+
+        // Remove highlight from all items
+        timelineItems.forEach((item) => {
+          item.classList.remove("timeline-highlighted");
+        });
+
+        // Add highlight to the most visible item
+        if (mostVisibleItem && maxRatio > 0.3) {
+          mostVisibleItem.classList.add("timeline-highlighted");
+        }
+      };
+
       highlightObserver = new IntersectionObserver(
         (entries) => {
+          // Only update if no items are being hovered
+          if (hoveredItems.size > 0) return;
+
           // Find the entry with the highest intersection ratio (most visible)
           let maxRatio = 0;
           let mostVisibleItem = null;
@@ -495,6 +563,12 @@ function App() {
         const timelineItems = document.querySelectorAll(".timeline-item");
         timelineItems.forEach((item) => {
           highlightObserver.unobserve(item);
+          // Remove event listeners
+          const handlers = eventHandlers?.get(item);
+          if (handlers) {
+            item.removeEventListener("mouseenter", handlers.enterHandler);
+            item.removeEventListener("mouseleave", handlers.leaveHandler);
+          }
         });
       }
     };
@@ -721,7 +795,7 @@ function App() {
                     <polyline points="12 6 12 12 16 14" />
                   </svg>
                 </div>
-                <p className="stat-value">5+ Years</p>
+              <p className="stat-value">5+ Years</p>
               </div>
               <p className="stat-label">
                 Delivering reliable, high-quality web experiences across the
@@ -746,7 +820,7 @@ function App() {
                     <path d="M8 7h8M8 11h6" />
                   </svg>
                 </div>
-                <p className="stat-value">Self-Taught Path</p>
+              <p className="stat-value">Self-Taught Path</p>
               </div>
               <p className="stat-label">
                 Built my skillset through relentless building, experimenting,
@@ -769,7 +843,7 @@ function App() {
                     <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                   </svg>
                 </div>
-                <p className="stat-value">Craft-Focused</p>
+              <p className="stat-value">Craft-Focused</p>
               </div>
               <p className="stat-label">
                 Focused on thoughtful UX, clean engineering, and long-term
@@ -841,7 +915,7 @@ function App() {
               >
                 <div className="timeline-meta">
                   <span>
-                    {role.period} · {role.location}
+                    {role.period}
                   </span>
                   <span>{role.company}</span>
                 </div>
