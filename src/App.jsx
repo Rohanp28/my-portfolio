@@ -407,7 +407,10 @@ function App() {
           entry.target.classList.add("animate-in");
           // Also animate section headings when section is visible
           const sectionHeading = entry.target.querySelector(".section-heading");
-          if (sectionHeading && !sectionHeading.classList.contains("animate-in")) {
+          if (
+            sectionHeading &&
+            !sectionHeading.classList.contains("animate-in")
+          ) {
             sectionHeading.classList.add("animate-in");
           }
           observer.unobserve(entry.target);
@@ -642,40 +645,36 @@ function App() {
         <div className="star"></div>
       </div>
       <header className="site-header">
-        <button className="logo" onClick={() => handleNavClick("hero")}>
-          RP
-        </button>
-
-        {/* Desktop Navigation */}
-        <nav className="site-nav desktop-nav" aria-label="Primary">
-          {[
-            "home",
-            "about",
-            "skills",
-            "experience",
-            "projects",
-            "services",
-            "contact",
-          ].map((section) => (
-            <button
-              key={section}
-              className="nav-link"
-              onClick={() => handleNavClick(section)}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </button>
-          ))}
-        </nav>
-
-        {/* Desktop Actions */}
-        <div className="header-actions desktop-actions">
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? "☀️" : "🌙"}
+        <div className="header-container">
+          <button className="logo" onClick={() => handleNavClick("hero")}>
+            <span className="logo-text">Rohan Patare</span>
           </button>
+
+          {/* Desktop Navigation */}
+          <nav className="site-nav desktop-nav" aria-label="Primary">
+            {["home", "experience", "projects", "about", "contact"].map(
+              (section) => (
+                <button
+                  key={section}
+                  className="nav-link"
+                  onClick={() => handleNavClick(section)}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </button>
+              )
+            )}
+          </nav>
+
+          {/* Desktop Actions */}
+          <div className="header-actions desktop-actions">
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? "☀️" : "🌙"}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Actions (Theme + Hamburger) */}
@@ -701,50 +700,36 @@ function App() {
         {/* Mobile Navigation Menu */}
         <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}>
           <nav className="mobile-nav">
-            {[
-              "home",
-              "about",
-              "skills",
-              "experience",
-              "services",
-              "education",
-              "contact",
-            ].map((section) => (
-              <button
-                key={section}
-                className="mobile-nav-link"
-                onClick={() => handleNavClick(section)}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </button>
-            ))}
+            {["home", "experience", "projects", "about", "contact"].map(
+              (section) => (
+                <button
+                  key={section}
+                  className="mobile-nav-link"
+                  onClick={() => handleNavClick(section)}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </button>
+              )
+            )}
           </nav>
         </div>
       </header>
 
       <main>
-        <section id="hero" className="hero glass-card">
+        <section id="hero" className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Frontend-Focused Full-Stack MERN Engineer</p>
-            <h1>Rohan Patare</h1>
+            <p className="eyebrow">Available for Collaboration</p>
+            <h1>
+              Hi, I'm <span className="gradient-text">Rohan</span>
+            </h1>
             <p className="lede">
-              {wrapWords(
-                "I'm a frontend-focused engineer with strong full-stack MERN abilities. I build fast, smooth, and reliable web experiences end to end — from clean, intuitive interfaces to solid backend APIs. I learn by building, experimenting, and refining until things feel right. I bring a product-first mindset, ensuring every feature feels polished, performant, and dependable."
-              )}
+              A Frontend-focused Full-Stack MERN Engineer crafting fast, smooth,
+              and scalable web applications.
             </p>
-            <div className="hero-meta">
-              <span>Pune · Remote friendly</span>
-              <span>rohanpatare98@gmail.com</span>
-              <span>
-                <a
-                  href="https://linkedin.com/in/rohan-patare"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  LinkedIn
-                </a>
-              </span>
-            </div>
+            <p className="lede">
+              Experienced in building intuitive UIs backed by reliable,
+              production-ready backend systems.
+            </p>
             <div className="hero-cta">
               <button
                 className="ghost-btn"
@@ -752,152 +737,16 @@ function App() {
               >
                 Let's Collaborate
               </button>
-
-              <a
-                href="/Rohan_Patare_Resume.pdf"
+              <button
                 className="ghost-btn"
-                download="Rohan_Patare_Resume.pdf"
+                onClick={() => handleNavClick("projects")}
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  style={{ marginRight: "0.5rem" }}
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download Resume
-              </a>
+                See My Work
+              </button>
             </div>
-          </div>
-          <div className="hero-stats glass-card">
-            <div>
-              <div className="stat-header">
-                <div className="stat-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                </div>
-              <p className="stat-value">5+ Years</p>
-              </div>
-              <p className="stat-label">
-                Delivering reliable, high-quality web experiences across the
-                stack.
-              </p>
+            <div className="hero-meta">
+              <span>📍 Pune, India</span>
             </div>
-            <div>
-              <div className="stat-header">
-                <div className="stat-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                    <path d="M8 7h8M8 11h6" />
-                  </svg>
-                </div>
-              <p className="stat-value">Self-Taught Path</p>
-              </div>
-              <p className="stat-label">
-                Built my skillset through relentless building, experimenting,
-                and learning by doing.
-              </p>
-            </div>
-            <div>
-              <div className="stat-header">
-                <div className="stat-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-                  </svg>
-                </div>
-              <p className="stat-value">Craft-Focused</p>
-              </div>
-              <p className="stat-label">
-                Focused on thoughtful UX, clean engineering, and long-term
-                maintainability.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="grid-section">
-          <article className="glass-card intro">
-            <h2>Summary</h2>
-            <p>
-              {wrapWords(
-                "I'm a full-stack engineer with 5+ years of experience, specializing in frontend development. I build fast, scalable, and intuitive web applications using React and TypeScript, backed by solid MERN full-stack abilities when end-to-end thinking is required."
-              )}
-            </p>
-            <br></br>
-            <p>
-              {wrapWords(
-                "I enjoy transforming complex requirements into clean, user-friendly interfaces that feel smooth and perform well. I thrive in collaborative teams and love working across design, product, and engineering to ship features that genuinely improve the user experience."
-              )}
-            </p>
-          </article>
-          <article className="glass-card badges">
-            <h3>Highlights</h3>
-            <ul>
-              {highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-        </section>
-
-        <section id="skills" className="glass-card">
-          <div className="section-heading">
-            <p className="eyebrow">Technical Skills</p>
-            <h2>Tools I trust</h2>
-          </div>
-          <div className="tech-grid">
-            {technologies.map((tech) => (
-              <div
-                key={tech.name}
-                className={`tech-item ${
-                  tech.color === "#000000" ? "tech-dark" : ""
-                }`}
-                style={{ "--tech-color": tech.color }}
-              >
-                <div className="tech-icon">
-                  <TechIcon name={tech.name} />
-                </div>
-                <span className="tech-name">{tech.name}</span>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -914,9 +763,7 @@ function App() {
                 key={role.title + role.period}
               >
                 <div className="timeline-meta">
-                  <span>
-                    {role.period}
-                  </span>
+                  <span>{role.period}</span>
                   <span>{role.company}</span>
                 </div>
                 <h3>{role.title}</h3>
@@ -1031,6 +878,29 @@ function App() {
           </div>
         </section>
 
+        <section id="skills" className="glass-card">
+          <div className="section-heading">
+            <p className="eyebrow">Technical Skills</p>
+            <h2>Tools I trust</h2>
+          </div>
+          <div className="tech-grid">
+            {technologies.map((tech) => (
+              <div
+                key={tech.name}
+                className={`tech-item ${
+                  tech.color === "#000000" ? "tech-dark" : ""
+                }`}
+                style={{ "--tech-color": tech.color }}
+              >
+                <div className="tech-icon">
+                  <TechIcon name={tech.name} />
+                </div>
+                <span className="tech-name">{tech.name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section id="services" className="glass-card">
           <div className="section-heading">
             <p className="eyebrow">What I Offer</p>
@@ -1049,42 +919,35 @@ function App() {
           </div>
         </section>
 
-        <section id="education" className="grid-section">
-          <article className="glass-card education-card">
-            <div className="education-header">
-              <div className="education-icon">🎓</div>
-              <div className="section-heading">
-                <p className="eyebrow">Education</p>
-                <h2>Foundations</h2>
-              </div>
-            </div>
-            <div className="education-content">
-              <h3 className="edu-title">Bachelor of Computer Engineering</h3>
+        <section id="about" className="glass-card">
+          <div className="section-heading">
+            <p className="eyebrow">About Me</p>
+            <h2>Who I am</h2>
+          </div>
+          <div className="about-content">
+            <p>
+              {wrapWords(
+                "I'm a full-stack engineer with 5+ years of experience, specializing in frontend development. I build fast, scalable, and intuitive web applications using React and TypeScript, backed by solid MERN full-stack abilities when end-to-end thinking is required."
+              )}
+            </p>
+            <p>
+              {wrapWords(
+                "I enjoy transforming complex requirements into clean, user-friendly interfaces that feel smooth and perform well. I thrive in collaborative teams and love working across design, product, and engineering to ship features that genuinely improve the user experience."
+              )}
+            </p>
+          </div>
+          <div className="about-education">
+            <h3 className="education-heading">Education</h3>
+            <div className="education-item">
               <p className="edu-institution">
                 Vishwakarma Institute of Technology, Pune
               </p>
-              <div className="edu-meta">
-                <span className="edu-period">Jun 2016 — May 2020</span>
-                <span className="edu-separator">·</span>
-                <span className="edu-cpi">CPI: 7.9</span>
-              </div>
-            </div>
-          </article>
-          <article className="glass-card certification-card">
-            <div className="certification-header">
-              <div className="certification-icon">🏆</div>
-              <div className="section-heading">
-                <p className="eyebrow">Certifications</p>
-                <h2>Recognition</h2>
-              </div>
-            </div>
-            <div className="certification-content">
-              <p className="certification-text">
-                Certificate of Appreciation for leading Flight Seatmap
-                Integration & Flights Polling at Musafir.com.
+              <p className="edu-degree">
+                B.E. - Computer Engineering, CPI: 7.9
               </p>
+              <p className="edu-period">Jun 2016 — May 2020</p>
             </div>
-          </article>
+          </div>
         </section>
 
         <section id="contact" className="contact glass-card">
