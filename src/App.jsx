@@ -718,7 +718,7 @@ function App() {
       <main>
         <section id="hero" className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Available for Collaboration</p>
+            <p className="eyebrow">Open to Work</p>
             <h1>
               Hi, I'm <span className="gradient-text">Rohan</span>
             </h1>
@@ -735,7 +735,7 @@ function App() {
                 className="ghost-btn btn-collaborate"
                 onClick={() => handleNavClick("contact")}
               >
-                Let's Collaborate
+                Hire Me!
               </button>
               <button
                 className="ghost-btn btn-work"

@@ -979,7 +979,98 @@ section.glass-card {
 }
 
 .hero .eyebrow {
-  animation-delay: 0.1s;
+  opacity: 1 !important;
+  color: transparent !important;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: var(--card-inner-bg);
+  border: 1px solid var(--card-inner-border);
+  border-radius: 999px;
+  background-image: linear-gradient(90deg, #a855f7 0%, #3b82f6 50%, #a855f7 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out 0.1s forwards, eyebrowGradientShift 3s ease-in-out 1.5s infinite, eyebrowBadgePulse 2.5s ease-in-out 1.5s infinite;
+  overflow: visible;
+}
+
+.hero .eyebrow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  padding: 2px;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  animation: eyebrowBorderGlow 2.5s ease-in-out 1.5s infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero .eyebrow::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
+  opacity: 0;
+  filter: blur(8px);
+  animation: eyebrowGlowPulse 2.5s ease-in-out 1.5s infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+@keyframes eyebrowGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes eyebrowBadgePulse {
+  0%, 100% {
+    border-color: var(--card-inner-border);
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+  }
+  50% {
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
+  }
+}
+
+@keyframes eyebrowBorderGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes eyebrowGlowPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
 }
 
 section {
