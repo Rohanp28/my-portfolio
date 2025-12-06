@@ -745,7 +745,9 @@ function App() {
               </button>
             </div>
             <div className="hero-meta">
-              <span>📍 Pune, India</span>
+              <span>
+                📍 <span className="location-text">Pune, India</span>
+              </span>
             </div>
           </div>
         </section>
@@ -1002,6 +1004,13 @@ function App() {
               <div className="contact-details">
                 <span className="contact-label">GitHub</span>
                 <span className="contact-value">View my work</span>
+              </div>
+            </a>
+            <a href="tel:+917263923702" className="contact-method">
+              <div className="contact-icon">📞</div>
+              <div className="contact-details">
+                <span className="contact-label">Call Me</span>
+                <span className="contact-value">Available for calls</span>
               </div>
             </a>
           </div>
