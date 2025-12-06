@@ -675,26 +675,26 @@ function App() {
               {theme === "dark" ? "☀️" : "🌙"}
             </button>
           </div>
-        </div>
 
-        {/* Mobile Actions (Theme + Hamburger) */}
-        <div className="mobile-actions">
-          <button
-            className="theme-toggle-mobile"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? "☀️" : "🌙"}
-          </button>
-          <button
-            className={`hamburger ${mobileMenuOpen ? "active" : ""}`}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          {/* Mobile Actions (Theme + Hamburger) */}
+          <div className="mobile-actions">
+            <button
+              className="theme-toggle-mobile"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? "☀️" : "🌙"}
+            </button>
+            <button
+              className={`hamburger ${mobileMenuOpen ? "active" : ""}`}
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
