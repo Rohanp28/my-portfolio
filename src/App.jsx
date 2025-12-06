@@ -667,6 +667,28 @@ function App() {
 
           {/* Desktop Actions */}
           <div className="header-actions desktop-actions">
+            <a
+              href="/Rohan_Patare_Resume.pdf"
+              download="Rohan_Patare_Resume.pdf"
+              className="resume-download-btn"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="download-icon"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Resume
+            </a>
             <button
               className="theme-toggle"
               onClick={toggleTheme}
@@ -676,8 +698,28 @@ function App() {
             </button>
           </div>
 
-          {/* Mobile Actions (Theme + Hamburger) */}
+          {/* Mobile Actions (Resume + Theme + Hamburger) */}
           <div className="mobile-actions">
+            <a
+              href="/Rohan_Patare_Resume.pdf"
+              download="Rohan_Patare_Resume.pdf"
+              className="resume-download-mobile-btn"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
             <button
               className="theme-toggle-mobile"
               onClick={toggleTheme}
@@ -711,6 +753,28 @@ function App() {
                 </button>
               )
             )}
+            <a
+              href="/Rohan_Patare_Resume.pdf"
+              download="Rohan_Patare_Resume.pdf"
+              className="mobile-nav-link resume-download-mobile"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Resume
+            </a>
           </nav>
         </div>
       </header>
