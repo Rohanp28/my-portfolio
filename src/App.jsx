@@ -883,7 +883,7 @@ function App() {
         <section id="skills" className="glass-card">
           <div className="section-heading">
             <p className="eyebrow">Technical Skills</p>
-            <h2>Tools I trust</h2>
+            <h2>Technologies I Use</h2>
           </div>
           <div className="tech-grid">
             {technologies.map((tech) => (
