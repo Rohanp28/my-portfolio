@@ -732,13 +732,13 @@ function App() {
             </p>
             <div className="hero-cta">
               <button
-                className="ghost-btn"
+                className="ghost-btn btn-collaborate"
                 onClick={() => handleNavClick("contact")}
               >
                 Let's Collaborate
               </button>
               <button
-                className="ghost-btn"
+                className="ghost-btn btn-work"
                 onClick={() => handleNavClick("projects")}
               >
                 See My Work

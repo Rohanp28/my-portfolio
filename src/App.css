@@ -585,9 +585,9 @@ main {
 
 .theme-toggle:hover {
   background: var(--btn-hover-bg);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2),
-    0 0 15px rgba(255, 255, 255, 0.15);
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2);
   transform: scale(1.1) rotate(180deg);
 }
 
@@ -601,7 +601,9 @@ main {
 }
 
 [data-theme="light"] .theme-toggle:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25),
+    0 0 20px rgba(59, 130, 246, 0.15);
 }
 
 .nav-link {
@@ -805,6 +807,77 @@ main {
 
 .ghost-btn:active {
   transform: translateY(0);
+}
+
+/* Let's Collaborate Button - Pulse Animation */
+.btn-collaborate {
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-collaborate::before {
+  display: none;
+}
+
+.btn-collaborate:hover {
+  background: linear-gradient(135deg, #9333ea 0%, #2563eb 100%);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.3),
+    0 0 50px rgba(59, 130, 246, 0.2);
+}
+
+.btn-collaborate:hover::before {
+  display: none;
+}
+
+/* See My Work Button - Slide Animation */
+.btn-work {
+  background: transparent;
+  border: 2px solid rgba(168, 85, 247, 0.6);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-work::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.btn-work::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -2;
+  border-radius: 999px;
+}
+
+.btn-work:hover {
+  color: #ffffff;
+  border-color: rgba(168, 85, 247, 0.8);
+  transform: translateX(4px) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3),
+    0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+.btn-work:hover::before {
+  opacity: 0.3;
+}
+
+.btn-work:hover::after {
+  left: 0;
 }
 
 .glass-card {
@@ -2343,84 +2416,73 @@ section.animate-in {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background: var(--card-inner-bg);
-  border: 1px solid var(--card-inner-border);
+  border-radius: 999px;
+  background: transparent;
+  border: 2px solid rgba(168, 85, 247, 0.6);
   color: var(--white);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   isolation: isolate;
   z-index: 1;
 }
 
-/* Rotating border for project links */
-/* Subtle glowing border for project link */
 .project-link::before {
   content: "";
   position: absolute;
   inset: -2px;
-  border-radius: 8px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0.03)
-  );
+  border-radius: 999px;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
   opacity: 0;
-  transition: opacity 400ms ease, box-shadow 400ms ease;
+  transition: opacity 0.4s ease;
   z-index: -1;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 5px rgba(255, 255, 255, 0.05), 0 0 10px rgba(255, 255, 255, 0.03);
 }
 
 .project-link::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: var(--btn-hover-bg);
-  opacity: 0;
-  transition: opacity 300ms ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: -2;
-  border-radius: 8px;
+  border-radius: 999px;
 }
 
 .project-link:hover {
-  border-color: transparent;
-  background: var(--btn-hover-bg);
-  color: var(--white);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15),
-    0 0 25px rgba(255, 255, 255, 0.12), 0 0 40px rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border-color: rgba(168, 85, 247, 0.8);
+  transform: translateX(4px) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3),
+    0 0 40px rgba(59, 130, 246, 0.2);
 }
 
 .project-link:hover svg {
-  transform: translateX(4px);
+  transform: translateX(2px);
   transition: transform 300ms ease;
 }
 
 .project-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
-  border-radius: 8px;
+  border-radius: 999px;
 }
 
 .project-link:hover::before {
-  opacity: 1;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14),
-    0 0 8px rgba(255, 255, 255, 0.11), 0 0 14px rgba(255, 255, 255, 0.08),
-    0 0 20px rgba(255, 255, 255, 0.04);
-  animation: glowPulse 2.2s ease-in-out infinite;
+  opacity: 0.3;
 }
 
 .project-link:hover::after {
-  opacity: 1;
+  left: 0;
 }
 
 .project-link:active {
-  transform: translateY(0);
+  transform: translateX(2px) translateY(0);
 }
 
 .project-link svg {
@@ -3031,10 +3093,10 @@ html {
 
   .theme-toggle-mobile:hover {
     background: var(--btn-hover-bg);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2),
-      0 0 15px rgba(255, 255, 255, 0.15);
-    transform: scale(1.1);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3),
+      0 0 20px rgba(59, 130, 246, 0.2);
+    transform: scale(1.1) rotate(180deg);
   }
 
   .theme-toggle-mobile:active {
@@ -3042,7 +3104,9 @@ html {
   }
 
   [data-theme="light"] .theme-toggle-mobile:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25),
+      0 0 20px rgba(59, 130, 246, 0.15);
   }
 
   /* Hamburger Menu */
@@ -3067,10 +3131,14 @@ html {
 
   .hamburger:hover {
     background: var(--btn-hover-bg);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2),
-      0 0 15px rgba(255, 255, 255, 0.15);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3),
+      0 0 20px rgba(59, 130, 246, 0.2);
     transform: scale(1.1);
+  }
+
+  .hamburger:hover span {
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
   }
 
   .hamburger:active {
@@ -3078,7 +3146,13 @@ html {
   }
 
   [data-theme="light"] .hamburger:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25),
+      0 0 20px rgba(59, 130, 246, 0.15);
+  }
+
+  [data-theme="light"] .hamburger:hover span {
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
   }
 
   .hamburger span {
