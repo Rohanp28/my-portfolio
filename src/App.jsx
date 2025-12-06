@@ -929,12 +929,17 @@ function App() {
           <div className="about-content">
             <p>
               {wrapWords(
-                "I'm a full-stack engineer with 5+ years of experience, specializing in frontend development. I build fast, scalable, and intuitive web applications using React and TypeScript, backed by solid MERN full-stack abilities when end-to-end thinking is required."
+                "Hello! I'm Rohan, a Full-Stack Developer with strong expertise in building fast, scalable, and user-friendly web applications. I specialize in React, TypeScript, Node.js, and the MERN stack, with a solid foundation in designing clean UIs and developing reliable end-to-end systems."
               )}
             </p>
             <p>
               {wrapWords(
-                "I enjoy transforming complex requirements into clean, user-friendly interfaces that feel smooth and perform well. I thrive in collaborative teams and love working across design, product, and engineering to ship features that genuinely improve the user experience."
+                "I enjoy transforming complex ideas into intuitive, high-performing interfaces and applications. My work emphasizes writing clean, maintainable code, optimizing performance, and delivering seamless user experiences across platforms."
+              )}
+            </p>
+            <p>
+              {wrapWords(
+                "As a strong collaborator, I work closely with design, product, and backend teams to deliver meaningful and impactful features. I'm continually exploring new technologies and refining my skills to build smarter, faster, and more efficient digital solutions that meet both user expectations and business goals."
               )}
             </p>
           </div>
@@ -955,13 +960,11 @@ function App() {
         <section id="contact" className="contact glass-card">
           <div className="section-heading">
             <p className="eyebrow">Get in touch</p>
-            <h2>Let's work together</h2>
+            <h2>Ready to Work Together?</h2>
           </div>
           <p className="contact-intro">
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your vision. Whether you're looking to
-            build a scalable web application, improve your existing platform, or
-            need a technical consultation, let's connect.
+            Let's make something incredible together! Reach out to discuss your
+            project, and let's build solutions that create real impact.
           </p>
           <div className="contact-status">
             <span className="status-indicator"></span>
