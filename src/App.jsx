@@ -312,7 +312,7 @@ const projects = [
     description:
       "A full-stack task management application for creating, organizing, and tracking daily tasks and to-do items.",
     techStack: ["React", "Node.js", "MongoDB", "Express"],
-    github: "https://github.com/Rohanp28/expense-tracker",
+    github: "https://github.com/Rohanp28/todo-app",
     live: "#",
   },
   {
